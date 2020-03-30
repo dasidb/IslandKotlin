@@ -36,7 +36,7 @@ class Game(
 
     override fun setup() {
         super.setup()
-        gameManager = GameManager(gameState = GameState())
+        //gameManager = GameManager(gameState = GameState())
     }
 
     override fun draw() {

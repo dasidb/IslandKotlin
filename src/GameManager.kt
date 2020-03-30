@@ -5,13 +5,16 @@ import processing.event.KeyEvent
 class GameManager{
     var gameStateMap : Map<String, GameState>? = HashMap()
     var currentGameState : GameState
+    var gameMap : GameMap
+
   //  get() = this.currentGameState
   //  set(state: GameState){
  //       this.currentGameState = state
  //   }
 
-    constructor(gameState: GameState){
+    constructor(gameState: GameState, gameMap: GameMap){
         this.currentGameState = gameState
+        this.gameMap = gameMap
     }
 
     fun update(){
