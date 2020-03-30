@@ -1,8 +1,14 @@
+import processing.core.PApplet
 import processing.event.KeyEvent
 
 
-class GameState(){
+open abstract class  GameState(pApplet: PApplet,
+                     gameManager: GameManager
+                ){
 
+init {
+
+}
     fun update(){
 
     }

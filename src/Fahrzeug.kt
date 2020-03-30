@@ -16,7 +16,7 @@ class Fahrzeug(
 ){
 
    init {
-       id = zahl
+     //  id = zahl
    }
 
 
