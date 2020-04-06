@@ -10,17 +10,21 @@ class GameMap(pApplet: PApplet){
   //  var  imageMap : MutableMap<String, PImage> = HashMap()
 
     init {
-      //  createGameMap()
+        gameMap = createGameMap(0F,0F)
 
     }
 
 
     //
-    fun createGameMap(cordX : Int, cordY : Int) : HashMap<PVector, Tile>{
+    fun createGameMap(cordX : Float, cordY : Float) : HashMap<PVector, Tile>{
+        val testCordX : Float =  cordX
+        val testCordY : Float  =   cordY
         for(x in 0 until 40 ){
             for(y in 0 until 40){
-                var cordVector : PVector = PVector(x as Float + cordX, y as Float + cordY)
-                val noiseValue : Float = useNoice(cordVector.x + x / 40F,cordVector.y + y / 40F)
+                var cordVector : PVector = PVector(x.toFloat() + cordX, y.toFloat() + cordY)
+               // val noiseValue : Float = useNoice((cordVector.x + x.toFloat() / 40F),(cordVector.y + y.toFloat() / 40F))
+                val noiseValue : Float = useNoice((testCordX + x.toFloat() / 40F),(testCordY + y.toFloat() / 40F))
+
                 gameMap.put(cordVector, addTileToMap(noiseValue,cordVector))
             }
         }
@@ -28,38 +32,50 @@ class GameMap(pApplet: PApplet){
         }
 
     fun useNoice(x : Float, y : Float) : Float{
-        var test : Float = pApplet.noise(x * 2f+ y * 2f)
-        + 0.5F * pApplet.noise(4F * x, 4F * y)
-        +0.25F * pApplet.noise(3F * x, 3F * y)
-        var waterTile : WaterTile = WaterTile(3F,3F)
+        var noise : Float = pApplet.noise(x * 2f, y * 2f) +
+                0.5F * pApplet.noise(2F * x, 2F * y) +
+                0.25F * pApplet.noise(3F * x, 3F * y)
+        // var waterTile : WaterTile = WaterTile(3F,3F)
 
-        return 2F
+        return noise
     }
 
     fun addTileToMap(noise : Float, vector : PVector): Tile {
+
         if(noise < 0.76F)
             return WaterTile(vector.x, vector.y)
+        else if(noise < 0.8F)
+                return SandTile(vector.x,vector.y)
         else
             return GrassTile(vector.x, vector.y)
     }
 
-    fun render(pApplet: PApplet){
-        println("test")
-    gameMap.forEach{
-        k,v ->
+    fun render(pApplet: PApplet, camera : PVector){
+      //  println(gameMap.size)
+    //gameMap.forEach{
+      //  k,v ->
+        for(x in 0 until 40) {
+            for(y in 0 until 40)   {
 
-        var image: PImage
-        if(v is GrassTile) {
-            image = Game.imageMap.get("grassTile")!!
+                var tile = gameMap.get(PVector(x + camera.x, y + camera.y))
+                println(x+ camera.x)
 
+                var image: PImage
+                if (tile is GrassTile)
+                    image = Game.imageMap.get("grassTile")!!
+
+                   else if (tile is SandTile)
+                    image = Game.imageMap.get("sandTile")!!
+                 else
+                    image = Game.imageMap.get("waterTile")!!
+
+
+
+                if (tile != null) {
+                    pApplet.image(image, x.toFloat() * 20, y.toFloat() * 20)
+                }
+            }
         }
-        else{
-            image = Game.imageMap.get("waterTile")!!
-
-        }
-
-            pApplet.image(image,2F,2F)
-    }
 
     }
 

@@ -4,13 +4,15 @@ import processing.event.KeyEvent
 
 class GameManager(
     var currentGameState : GameState? = null,
-    var pApplet: PApplet
+    var pApplet: PApplet,
+    var hasMapUpdate : Boolean = true
 
 ){
-
+    var increment : Int = 0
     var gameMap : GameMap = GameMap(pApplet)
     var gameStateMap : MutableMap<String, GameState> = HashMap()
     var character : Character = Character()
+    var camera : Camera = Camera()
 
 
     fun changeGameState(gameStateKey : String, gameState: GameState){
@@ -22,14 +24,28 @@ class GameManager(
 
     fun update(){
         currentGameState?.update()
-
-        gameMap.createGameMap(0,0)
-
+       // if(hasMapUpdate) {
+            //gameMap.createGameMap(camera.position.x, camera.position.y)
+        gameMap.createGameMap(camera.position.x , camera.position.y)
+        //}
+        //println(gameMap.gameMap.size)
     }
 
     fun render(){
+        increment++
+        pApplet.clear()
         currentGameState?.render()
-        gameMap.render(pApplet)
+        gameMap.render(pApplet, camera.position)
+        if(increment > 60){
+            increment = 0
+            camera.position.x ++
+
+            println(gameMap.gameMap.size)
+        }
+
+        //camera.position.x++
+
+
 
     }
 
