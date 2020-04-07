@@ -36,12 +36,12 @@ class GameManager(
         pApplet.clear()
         currentGameState?.render()
         gameMap.render(pApplet, camera.position)
-        if(increment > 60){
-            increment = 0
+       // if(increment > 60){
+           // increment = 0
             camera.position.x ++
-
+            camera.position.y ++
             println(gameMap.gameMap.size)
-        }
+    //    }
 
         //camera.position.x++
 

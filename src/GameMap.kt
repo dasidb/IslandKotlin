@@ -17,13 +17,16 @@ class GameMap(pApplet: PApplet){
 
     //
     fun createGameMap(cordX : Float, cordY : Float) : HashMap<PVector, Tile>{
-        val testCordX : Float =  cordX
-        val testCordY : Float  =   cordY
+        val testCordX : Float =  cordX /40F
+        val testCordY : Float  =   cordY/40F
         for(x in 0 until 40 ){
             for(y in 0 until 40){
                 var cordVector : PVector = PVector(x.toFloat() + cordX, y.toFloat() + cordY)
+                if(gameMap.containsKey(cordVector))
+                    continue
                // val noiseValue : Float = useNoice((cordVector.x + x.toFloat() / 40F),(cordVector.y + y.toFloat() / 40F))
                 val noiseValue : Float = useNoice((testCordX + x.toFloat() / 40F),(testCordY + y.toFloat() / 40F))
+
 
                 gameMap.put(cordVector, addTileToMap(noiseValue,cordVector))
             }
