@@ -11,7 +11,7 @@ class GameManager(
     var increment : Int = 0
     var gameMap : GameMap = GameMap(pApplet)
     var gameStateMap : MutableMap<String, GameState> = HashMap()
-    var character : Character = Character()
+    var character : Character = Character(Game.imageMap.get("character")!!)
     var camera : Camera = Camera()
 
 
@@ -28,20 +28,16 @@ class GameManager(
             //gameMap.createGameMap(camera.position.x, camera.position.y)
         gameMap.createGameMap(camera.position.x , camera.position.y)
         //}
+
         //println(gameMap.gameMap.size)
     }
 
     fun render(){
         increment++
         pApplet.clear()
-        currentGameState?.render()
+
         gameMap.render(pApplet, camera.position)
-       // if(increment > 60){
-           // increment = 0
-            camera.position.x ++
-            camera.position.y ++
-            println(gameMap.gameMap.size)
-    //    }
+        currentGameState?.render()
 
         //camera.position.x++
 

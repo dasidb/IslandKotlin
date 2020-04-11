@@ -61,7 +61,7 @@ class GameMap(pApplet: PApplet){
             for(y in 0 until 40)   {
 
                 var tile = gameMap.get(PVector(x + camera.x, y + camera.y))
-                println(x+ camera.x)
+
 
                 var image: PImage
                 if (tile is GrassTile)

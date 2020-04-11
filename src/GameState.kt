@@ -2,26 +2,25 @@ import processing.core.PApplet
 import processing.event.KeyEvent
 
 
-open abstract class  GameState(pApplet: PApplet,
-                     gameManager: GameManager
+open abstract class  GameState(val pApplet: PApplet,
+                     val gameManager: GameManager
                 ){
-
+   // val pApplet = pApplet
+   // val gameManager: GameManager = gameManager
 init {
 
 }
-    fun update(){
+    abstract fun update()
+
+
+
+    abstract fun render()
+
+    open fun keyPressed(event : KeyEvent){
 
     }
 
-    fun render(){
-
-    }
-
-    fun keyPressed(event : KeyEvent){
-
-    }
-
-    fun keyReleased(event : KeyEvent){
+    open fun keyReleased(event : KeyEvent){
 
     }
 

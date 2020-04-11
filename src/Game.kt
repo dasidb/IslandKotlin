@@ -8,14 +8,14 @@ fun main() {
 }
 
 class Game : PApplet() {
-    var gameManager: GameManager
+    var gameManager: GameManager? = null
     var i: Int = 0
     var resolutionX: Int = 800;
     var resolutionY: Int = 800
 
     init {
-        gameManager = GameManager(null, this)
-        gameManager.changeGameState("playGameState", PlayGameState(this, gameManager))
+        //gameManager = GameManager(null, this)
+        //gameManager.changeGameState("playGameState", PlayGameState(this, gameManager,gameManager.character))
     }
 
     init {
@@ -38,6 +38,8 @@ class Game : PApplet() {
     override fun setup() {
         super.setup()
         loadMapAssets()
+        gameManager = GameManager(null, this)
+        gameManager?.changeGameState("playGameState", PlayGameState(this, gameManager!!, gameManager!!.character))
         frameRate(60F)
         background(0F, 0F, 0F)
         loop()
@@ -48,8 +50,8 @@ class Game : PApplet() {
     override fun draw() {
         // super.draw()
 
-        gameManager.update()
-        gameManager.render()
+        gameManager?.update()
+        gameManager?.render()
 
 
     }
@@ -70,6 +72,8 @@ class Game : PApplet() {
         imageMap.put("waterTile", image)
         image = loadImage("assets/sandTile.png")
         imageMap.put("sandTile", image)
+        image = loadImage("assets/held_survival.png")
+        imageMap.put("character",image)
     }
 
 
