@@ -5,6 +5,7 @@ class Camera(var position : PVector = PVector(0F,0F)
 
     fun moveCameraUp(){
         position.y = position.y - 1F
+
     }
 
     fun moveCameraDown(){

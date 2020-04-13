@@ -1,6 +1,6 @@
 import processing.core.PImage
 
-open class Tile(
+open abstract class Tile(
 
 
     var cordX: Float,
