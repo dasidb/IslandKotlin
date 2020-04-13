@@ -18,14 +18,27 @@ class PlayGameState(pApplet: PApplet, gameManager: GameManager, character: Chara
     }
 
     fun changeCameraPositionX(){
-       // if(character.position.x <200)
+        if(character.position.x < 200) {
+            gameManager.camera.moveCameraLeft()
+            character.moveRight()
+        }
+        if(character.position.x < 800){
+            gameManager.camera.moveCameraRight()
+            character.moveLeft()
+        }
     }
 
     fun changeCameraPositionY(){
-        if(character.position.y < 200)
-            todo { "camera movement on specific character position" +
-                    ""
-            }
+        if(character.position.y < 200) {
+            gameManager.camera.moveCameraUp()
+            character.moveDown()
+        }
+        if(character.position.y > 600) {
+            gameManager.camera.moveCameraDown()
+            character.moveUp()
+        }
+
+
     }
 
     override fun keyPressed(event : KeyEvent){
@@ -40,7 +53,6 @@ class PlayGameState(pApplet: PApplet, gameManager: GameManager, character: Chara
     }
 
     fun keyInput(key : Char, keyCode: Int, keyPressed: Boolean){
-        println(character.position.y)
         if(keyPressed){
 
             if(key == 'w')
@@ -48,7 +60,10 @@ class PlayGameState(pApplet: PApplet, gameManager: GameManager, character: Chara
 
             if(key == 's')
                 character.moveDown()
-
+            if(key == 'a')
+                character.moveLeft()
+            if(key == 'd')
+                character.moveRight()
         }
     }
 

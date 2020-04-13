@@ -37,7 +37,7 @@ class Game : PApplet() {
 
     override fun setup() {
         super.setup()
-        loadMapAssets()
+        loadAssets()
         gameManager = GameManager(null, this)
         gameManager?.changeGameState("playGameState", PlayGameState(this, gameManager!!, gameManager!!.character))
         frameRate(60F)
@@ -65,15 +65,30 @@ class Game : PApplet() {
         gameManager?.keyReleased(event)
     }
 
-    fun loadMapAssets() {
+    fun loadAssets() {
+        loadTileAssets()
+        loadEntityAssets()
+        loadItemAssets()
+
+    }
+
+    fun loadTileAssets(){
         var image = loadImage("assets/grassTile.png")
         imageMap.put("grassTile", image)
         image = loadImage("assets/waterTile.png")
         imageMap.put("waterTile", image)
         image = loadImage("assets/sandTile.png")
         imageMap.put("sandTile", image)
-        image = loadImage("assets/held_survival.png")
+    }
+
+    fun  loadEntityAssets(){
+        var image = loadImage("assets/held_survival.png")
         imageMap.put("character",image)
+    }
+
+    fun loadItemAssets(){
+        var image = loadImage("assets/wood.png")
+        imageMap.put("wood", image)
     }
 
 

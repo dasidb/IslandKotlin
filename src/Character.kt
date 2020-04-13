@@ -18,10 +18,10 @@ class Character(image : PImage){
         position.y  += 20
     }
     fun moveLeft(){
-        position.x -20
+        position.x -= 20
     }
     fun moveRight(){
-        position.x +20
+        position.x += 20
     }
 
     fun render(pApplet: PApplet){
