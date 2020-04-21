@@ -1,0 +1,14 @@
+[
+{
+  "description": "das ist eine description",
+  "maxStackSize": 50,
+  "name": "Gras",
+  "id": 0
+},
+{
+  "description": "das ist eine description",
+  "maxStackSize": 50,
+  "name": "Sand",
+  "id": 1
+}
+]

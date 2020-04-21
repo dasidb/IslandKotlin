@@ -29,6 +29,7 @@ class GameMap(pApplet: PApplet){
 
 
                 gameMap.put(cordVector, addTileToMap(noiseValue,cordVector))
+
             }
         }
         return gameMap

@@ -1,5 +1,7 @@
 import processing.core.PApplet
 import processing.core.PImage
+import processing.data.JSONArray
+import processing.data.JSONObject
 import processing.event.KeyEvent
 
 fun main() {
@@ -41,6 +43,7 @@ class Game : PApplet() {
         gameManager = GameManager(null, this)
         gameManager?.changeGameState("playGameState", PlayGameState(this, gameManager!!, gameManager!!.character))
         frameRate(60F)
+        test()
         background(0F, 0F, 0F)
         loop()
 
@@ -91,5 +94,19 @@ class Game : PApplet() {
         imageMap.put("wood", image)
     }
 
+    fun test(){
+        var json : JSONArray =  loadJSONArray("resources/itemList.json")
+
+
+        var jsonTest = json.getJSONObject(1)
+        print(jsonTest)
+   //     json.setInt("id", 0);
+     //   json.setString("species", "Panthera leo");
+     //   json.setString("name", "Lion");
+
+     //   saveJSONObject(json, "C:\\Users\\Lukas\\Desktop\\java\\Kotlin/new.json");
+    }
 
 }
+
+

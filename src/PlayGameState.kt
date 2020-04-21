@@ -10,12 +10,12 @@ class PlayGameState(pApplet: PApplet, gameManager: GameManager, character: Chara
     }
 
     override fun update() {
-        changeCameraPositionX()
-        changeCameraPositionY()
+     //   changeCameraPositionX()
+      //  changeCameraPositionY()
     }
 
     override fun render() {
-        character.render(pApplet)
+        character.render(pApplet, gameManager.camera)
     }
 
     fun changeCameraPositionX(){
@@ -71,7 +71,10 @@ class PlayGameState(pApplet: PApplet, gameManager: GameManager, character: Chara
                 character.moveRight()
             if(key == 'q')
                 interactionDependingOnTile()
+            if(key == 'e')
+                character.gatherResources()
         }
+
     }
 
     fun interactionDependingOnTile(){

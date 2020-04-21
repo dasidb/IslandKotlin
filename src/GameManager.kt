@@ -37,6 +37,7 @@ class GameManager(
         pApplet.clear()
 
         gameMap.render(pApplet, camera.position)
+
         currentGameState?.render()
 
         //camera.position.x++
